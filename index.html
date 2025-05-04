@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ComputeHeat.org</title>
+    <title>ComputeHeat.org - Innovative Compute Energy Applications</title>
+    <meta name="description" content="ComputeHeat.org: Explore innovative applications turning excess compute cycles from Bitcoin mining, AI, crypto mining, and distributed computing into valuable heat and other outputs.">
     <style>
         body {
             margin: 0;
@@ -12,54 +13,78 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            min-height: 100vh; /* Use min-height to ensure content fits */
             background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: white;
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            padding: 20px; /* Add padding for smaller screens */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+        }
+
+        main {
+            z-index: 1; /* Ensure content is above the animated background */
+            position: relative; /* Needed for z-index */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
             margin: 0.5em 0;
-            animation: fadeIn 2s ease forwards;
+            animation: fadeIn 1.5s ease forwards;
         }
 
         p {
             max-width: 600px;
-            font-size: 1.2rem;
-            animation: fadeIn 3s ease forwards;
+            font-size: clamp(1rem, 3vw, 1.2rem); /* Responsive font size */
+            line-height: 1.6; /* Improved readability */
+            margin-bottom: 2em; /* Space before buttons */
+            animation: fadeIn 2.5s ease forwards;
         }
 
         .buttons {
-            margin-top: 2em;
+            margin-top: 1em; /* Adjusted margin */
             display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            animation: fadeIn 4s ease forwards;
+            gap: 1rem; /* Further reduced gap to fit more buttons */
+            flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+            justify-content: center; /* Center buttons when wrapped */
+            animation: fadeIn 3.5s ease forwards;
+            max-width: 90%; /* Prevent buttons taking full width on very wide screens */
         }
 
         .button {
             text-decoration: none;
-            padding: 1em 2em;
+            padding: 0.8em 1.5em; /* Adjusted padding for potentially more buttons */
             border: 2px solid white;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: clamp(0.85rem, 2.2vw, 1rem); /* Slightly smaller font for more buttons */
             color: white;
-            transition: background 0.3s, color 0.3s, transform 0.3s;
+            background-color: transparent; /* Explicitly set background */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            white-space: nowrap; /* Prevent button text from wrapping */
+            flex-shrink: 0; /* Prevent buttons from shrinking too much when wrapped */
         }
 
-        .button:hover {
-            background: white;
+        .button:hover,
+        .button:focus { /* Added focus state for accessibility */
+            background-color: white;
             color: #2c5364;
             transform: scale(1.05);
+            outline: none; /* Remove default focus outline, style handled by background/color */
         }
 
         .animated-bg {
-            position: absolute;
+            position: fixed; /* Use fixed to cover the whole viewport */
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: pulse 5s infinite;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+            animation: pulse 6s infinite ease-in-out;
+            z-index: 0; /* Place background behind content */
+            /* Ensure background doesn't interfere with selecting text/buttons */
+            pointer-events: none;
         }
 
         @keyframes fadeIn {
@@ -68,25 +93,37 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.5); opacity: 0.2; }
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.5); opacity: 0.15; }
         }
 
+        /* Media query for reduced motion preference */
         @media (prefers-reduced-motion: reduce) {
-            * {
+            body, h1, p, .buttons, .animated-bg {
                 animation: none !important;
                 transition: none !important;
+            }
+            .animated-bg {
+                background: none; /* Optionally remove animated background entirely */
+            }
+            .button:hover,
+            .button:focus {
+                 transform: none; /* Disable hover/focus scaling */
             }
         }
     </style>
 </head>
 <body>
     <div class="animated-bg"></div>
-    <h1>Welcome to ComputeHeat.org</h1>
-    <p>Your hub for innovative compute energy applications. Explore how we're turning excess compute cycles into valuable outputs across domains like Bitcoin mining and AI training.</p>
-    <div class="buttons">
-        <a href="https://bitcoinHeat.org" class="button">Go to BitcoinHeat.org</a>
-        <a href="https://aiHeat.org" class="button">Go to aiHeat.org</a>
-    </div>
+    <main>
+        <h1>Welcome to ComputeHeat.org</h1>
+        <p>Your hub for innovative compute energy applications. Discover how excess compute cycles from domains like Bitcoin mining, AI, crypto mining (like Unmineable), and distributed computing (like Folding@home) can be harnessed for valuable outputs.</p>
+        <div class="buttons">
+            <a href="https://bitcoinHeat.org" class="button" target="_blank" rel="noopener noreferrer">Explore BitcoinHeat</a>
+            <a href="https://aiHeat.org" class="button" target="_blank" rel="noopener noreferrer">Explore AIHeat</a>
+            <a href="https://foldingathome.org" class="button" target="_blank" rel="noopener noreferrer">Visit Folding@home</a>
+            <a href="https://unmineable.com/?ref=vwwp-obmd" class="button" target="_blank" rel="noopener noreferrer">Visit Unmineable</a>
+        </div>
+    </main>
 </body>
 </html>
